@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krrish Bhandari | AI Lab</title>
+    <style>
+        :root {
+            --bg: #030303;
+            --surface: #0d0d0d;
+            --border: #1a1a1a;
+            --accent: #ffffff;
+            --subtext: #777777;
+            --danger: #ff3b3b;
+            --warning: #ff9f0a;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--accent);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.5;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            padding: 5rem 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand-logo {
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .brand-logo span { color: var(--subtext); font-weight: 300; }
+
+        /* Input Section */
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-bottom: 5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .field { display: flex; flex-direction: column; gap: 0.75rem; }
+
+        label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--subtext);
+            font-weight: 700;
+        }
+
+        input {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        input:focus {
+            border-color: var(--subtext);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .button-group { display: flex; gap: 1rem; }
+
+        .btn-main {
+            background: var(--accent);
+            color: black;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: transform 0.1s;
+        }
+
+        .btn-main:active { transform: scale(0.98); }
+
+        .btn-cancel {
+            background: transparent;
+            color: var(--subtext);
+            border: 1px solid var(--border);
+            padding: 1rem 2rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+
+        /* Grid & Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 8px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .card:hover {
+            border-color: #333;
+            transform: translateY(-5px);
+        }
+
+        .card-num {
+            font-size: 0.6rem;
+            font-family: monospace;
+            color: var(--subtext);
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .card .purpose {
+            color: #ccc;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            min-height: 3em;
+        }
+
+        .drawback-box {
+            background: rgba(255, 159, 10, 0.05);
+            border-left: 2px solid var(--warning);
+            padding: 0.8rem 1rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: var(--warning);
+        }
+
+        .drawback-label {
+            display: block;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            font-weight: 900;
+            margin-bottom: 4px;
+            opacity: 0.8;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .link-visit {
+            text-decoration: none;
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-actions { display: flex; gap: 1rem; }
+
+        .btn-icon {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            padding: 0;
+        }
+
+        .edit-link { color: var(--subtext); }
+        .del-link { color: var(--danger); opacity: 0.6; }
+        .del-link:hover { opacity: 1; }
+
+        @media (max-width: 600px) {
+            .container { padding: 2rem 0; }
+            header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="brand-logo">K. BHANDARI <span>/ AI LAB</span></div>
+        <div style="font-size: 0.6rem; letter-spacing: 2px; color: var(--subtext);">SYSTEM v2.0</div>
+    </header>
+
+    <div class="panel">
+        <input type="hidden" id="editIndex" value="-1">
+        <div class="input-row">
+            <div class="field">
+                <label>Identifier</label>
+                <input type="text" id="tName" placeholder="e.g. Claude 3.5">
+            </div>
+            <div class="field">
+                <label>Core Function</label>
+                <input type="text" id="tPurpose" placeholder="e.g. Advanced Reasoning">
+            </div>
+            <div class="field">
+                <label>Drawback</label>
+                <input type="text" id="tDrawback" placeholder="e.g. Usage limits">
+            </div>
+            <div class="field">
+                <label>Endpoint URL</label>
+                <input type="url" id="tUrl" placeholder="https://...">
+            </div>
+        </div>
+        <div class="button-group">
+            <button class="btn-main" id="submitBtn" onclick="handleAction()">Initialize Tool +</button>
+            <button class="btn-cancel" id="cancelBtn" onclick="resetForm()" style="display:none;">Discard</button>
+        </div>
+    </div>
+
+    <div id="toolGrid" class="grid"></div>
+</div>
+
+<script>
+    let toolkit = JSON.parse(localStorage.getItem('kb_toolkit')) || [];
+
+    function render() {
+        const grid = document.getElementById('toolGrid');
+        grid.innerHTML = '';
+        
+        toolkit.forEach((item, i) => {
+            const indexStr = (i + 1).toString().padStart(2, '0');
+            grid.innerHTML += `
+                <div class="card">
+                    <div>
+                        <div class="card-num">// REF_${indexStr}</div>
+                        <h3>${item.name}</h3>
+                        <p class="purpose">${item.purpose}</p>
+                        <div class="drawback-box">
+                            <span class="drawback-label">Known Drawback</span>
+                            ${item.drawback || 'No critical drawbacks identified.'}
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="${item.url}" target="_blank" class="link-visit">Launch _</a>
+                        <div class="card-actions">
+                            <button class="btn-icon edit-link" onclick="setupEdit(${i})">Edit</button>
+                            <button class="btn-icon del-link" onclick="removeTool(${i})">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    function handleAction() {
+        const name = document.getElementById('tName').value;
+        const purpose = document.getElementById('tPurpose').value;
+        const drawback = document.getElementById('tDrawback').value;
+        const url = document.getElementById('tUrl').value;
+        const editIndex = parseInt(document.getElementById('editIndex').value);
+
+        if(!name || !purpose || !url) return alert("All primary fields required.");
+
+        const toolData = { name, purpose, drawback, url };
+
+        if(editIndex === -1) {
+            toolkit.push(toolData);
+        } else {
+            toolkit[editIndex] = toolData;
+        }
+
+        saveAndRefresh();
+        resetForm();
+    }
+
+    function setupEdit(i) {
+        const tool = toolkit[i];
+        document.getElementById('tName').value = tool.name;
+        document.getElementById('tPurpose').value = tool.purpose;
+        document.getElementById('tDrawback').value = tool.drawback;
+        document.getElementById('tUrl').value = tool.url;
+        document.getElementById('editIndex').value = i;
+        
+        document.getElementById('submitBtn').innerText = "Update System _";
+        document.getElementById('cancelBtn').style.display = "block";
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetForm() {
+        document.getElementById('tName').value = '';
+        document.getElementById('tPurpose').value = '';
+        document.getElementById('tDrawback').value = '';
+        document.getElementById('tUrl').value = '';
+        document.getElementById('editIndex').value = '-1';
+        document.getElementById('submitBtn').innerText = "Initialize Tool +";
+        document.getElementById('cancelBtn').style.display = "none";
+    }
+
+    function removeTool(i) {
+        if(confirm("Confirm deletion?")) {
+            toolkit.splice(i, 1);
+            saveAndRefresh();
+        }
+    }
+
+    function saveAndRefresh() {
+        localStorage.setItem('kb_toolkit', JSON.stringify(toolkit));
+        render();
+    }
+
+    render();
+</script>
+
+</body>
+</html>
